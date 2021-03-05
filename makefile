@@ -19,7 +19,7 @@ lex.yy.c: $(LFILE)
 y.tab.c: $(YFILE)
 	$(YACC) $(YFLAGS) $(YFILE)
 
-a.out: lex.yy.c y.tab.c
+a.out: lex.yy.c y.tab.c y.tab.h
 	$(CC) $(CFLAGS) lex.yy.c y.tab.c
 
 build: clean a.out
