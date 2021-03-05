@@ -7,28 +7,52 @@
     void success();
 %}
 
-%token UPDATE SET WHERE AND OR IS NOT ID END NULL_VAL STR_VAL NUM_VAL DEFAULT_VAL
+%token UPDATE SET WHERE AND OR IS NOT ID BETWEEN END 
+%token NULL_VAL STR_VAL NUM_VAL DEFAULT_VAL
+%token MAX_FUNC MIN_FUNC AVG_FUNC SUM_FUNC ABS_FUNC CEIL_FUNC FLOOR_FUNC UPPER_FUNC LOWER_FUNC
 
 %%
 start: UPDATE ID SET columns clause END       { success(); }
     ;
-columns: ID '=' value ',' columns
-    | ID '=' value
+columns: ID '=' col_val ',' columns
+    | ID '=' col_val
+    ;
+col_val: value
+    | DEFAULT_VAL
     ;
 value: NULL_VAL
     | STR_VAL
     | NUM_VAL
-    | DEFAULT_VAL
+    | NUM_VAL '+' NUM_VAL
+    | NUM_VAL '-' NUM_VAL
+    | NUM_VAL '*' NUM_VAL
+    | NUM_VAL '/' NUM_VAL
+    | NUM_VAL '%' NUM_VAL
+    | MAX_FUNC
+    | MIN_FUNC
+    | AVG_FUNC
+    | SUM_FUNC
+    | ABS_FUNC
+    | CEIL_FUNC
+    | FLOOR_FUNC
+    | UPPER_FUNC
+    | LOWER_FUNC
     ;
-clause: WHERE condition
+clause: WHERE where_stmt
     |
     ;
-condition: '(' ID op value ')'
+where_stmt: '(' where_stmt ')'
+    | condition
+    | condition AND condition
+    | condition OR condition
+    | ID BETWEEN value AND value
+    | ID BETWEEN value OR value
+    | ID NOT BETWEEN value AND value
+    | ID NOT BETWEEN value OR value
+    ;
+condition: '(' condition ')'
     | ID op value
-    | '(' ID op value ')' AND condition
-    | ID op value AND condition
-    | '(' ID op value ')' OR  condition
-    | ID op value OR condition
+    | NOT ID op value
     ; 
 op: '='
     | '!''='
