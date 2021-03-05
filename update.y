@@ -71,9 +71,9 @@ void success() {
     exit(0);
 }
 
-int yyerror(const char *s) {
-    printf("Query is Invalid!\n");
-    return 1;
+int yyerror(const char* msg) {
+    fprintf(stderr, "Error: %s\n", msg);
+    return 2;
 }
 
 int main() {
