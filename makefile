@@ -19,8 +19,10 @@ lex.yy.c: $(LFILE)
 y.tab.c: $(YFILE)
 	$(YACC) $(YFLAGS) $(YFILE)
 
-compile: lex.yy.c y.tab.c
+a.out: lex.yy.c y.tab.c
 	$(CC) $(CFLAGS) lex.yy.c y.tab.c
 
-run: compile
+build: clean a.out
+
+run: a.out
 	./a.out
