@@ -4,8 +4,10 @@
 %}
 
 id [A-Za-z_]+[A-Za-z0-9_]*
-backticksid [`][A-Za-z_]+[A-Za-z0-9_ ]*[`]
+backticks_id [`][A-Za-z_]+[A-Za-z0-9_ ]*[`]
 digit [0-9]
+number {digit}+(\.{digit}+)?
+string_literal (['](\\\'|[^'])*['])|(["](\\\"|[^"])*["])
 
 %%
 [uU][pP][dD][aA][tT][eE]					return UPDATE;
@@ -15,34 +17,41 @@ digit [0-9]
 [oO][rR]									return OR;
 [iI][sS]									return IS;
 [nN][oO][tT]								return NOT;
+[lL][iI][kK][eE]							return LIKE;
 [bB][eE][tT][wW][eE][eE][nN]				return BETWEEN;
-"NULL"										return NULL_VAL;
-"DEFAULT"                               	return DEFAULT_VAL;
-"MAX("{id}")"								return MAX_FUNC;
-"MIN("{id}")"								return MIN_FUNC;
-"AVG("{id}")"								return AVG_FUNC;
-"SUM("{id}")"								return SUM_FUNC;
-"ABS("({digit}+(\.{digit}+)?|{id})")"		return ABS_FUNC;
-"CEIL("({digit}+(\.{digit}+)?|{id})")"		return CEIL_FUNC;
-"FLOOR("({digit}+(\.{digit}+)?|{id})")"		return FLOOR_FUNC;
-"UPPER("(['].*[']|["].*["]|{id})")"			return UPPER_FUNC;
-"LOWER("(['].*[']|["].*["]|{id})")"			return LOWER_FUNC;
-['].*[']									return STR_VAL;
-["].*["]									return STR_VAL;
-{digit}+(\.{digit}+)?   					return NUM_VAL;
-{backticksid}								return ID;
+[nN][uU][lL][lL]							return NULL_VAL;
+[dD][eE][fF][aA][uU][lL][tT]				return DEFAULT_VAL;
+[tT][rR][uU][eE]							return BOOL_VAL;
+[fF][aA][lL][sS][eE]						return BOOL_VAL;
+[mM][aA][xX]								return MAX_FUNC;
+[mM][iI][nN]								return MIN_FUNC;
+[aA][vV][gG]								return AVG_FUNC;
+[sS][uU][mM]								return SUM_FUNC;
+[aA][bB][sS]								return ABS_FUNC;
+[cC][eE][iI][lL]							return CEIL_FUNC;
+[fF][lL][oO][oO][rR]						return FLOOR_FUNC;
+[uU][pP][pP][eE][rR]						return UPPER_FUNC;
+[lL][oO][wW][eE][rR]						return LOWER_FUNC;
+{string_literal}							return STR_VAL;
+{number}   									return NUM_VAL;
+{backticks_id}								return ID;
 {id}										return ID;
 [+]											return *yytext;
 [-]											return *yytext;
 [*]											return *yytext;
 [/]											return *yytext;
 [%]											return *yytext;
+[&]											return *yytext;
+[~]											return *yytext;
+[|]											return *yytext;
+[\^]										return *yytext;
 [(]											return *yytext;
 [)]											return *yytext;
 [,]											return *yytext;
 (!)?[=]										return *yytext;
 [<>](=)?									return *yytext;
 "<>"                						return *yytext;
+"<=>"										return *yytext;
 ;											return END;
 \n				    						{ printf("  -> "); }
 [ \t]+			    	                	/* ignore whitespace */;
