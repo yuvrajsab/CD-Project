@@ -11,7 +11,7 @@ YFILE = update.y
 default: run
 
 clean:
-	rm -f lex.yy.c y.* a.out
+	rm -f lex.yy.c y.* a.out query.txt
 
 lex.yy.c: $(LFILE)
 	$(LEX) $(LFLAGS) $(LFILE)
