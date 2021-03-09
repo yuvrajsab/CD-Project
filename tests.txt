@@ -28,3 +28,6 @@ WHERE (
     AND
     (employeeName = 'AJAY') 
 );
+UpDATe table
+set `asdsad sadsa` = LOWER('as\'s23asd'), adsas = MIN(NUKasd)
+wherE (name="dsd" and name=default);
