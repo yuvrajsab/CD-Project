@@ -16,7 +16,7 @@ Query is Valid!
 
 ## Development
 
-This project is built using Flex, Yacc and GNUMake.
+This project is built using Flex, Yacc and [GNUMake](https://www.gnu.org/software/make/).
 Before you can start development you need to take care of a few prerequisites.
 
 ### Installing Prerequisites
@@ -27,6 +27,8 @@ Before you can start development you need to take care of a few prerequisites.
 sudo apt install flex yacc 
 sudo apt install make #(optional)
 ```
+
+**Note**: You can get GnuMake for Windows OS from http://gnuwin32.sourceforge.net/packages/make.htm
 
 ### Clone Project
 
