@@ -1,24 +1,30 @@
 UPDATE table_name SET column1 = 'value1' WHERE column1='asa';
-UpdAtE table_name SeT column1 = 'value1' WhEre column1='asa';
-UPDATE table_name SET = "value1", column2 = value2 WHERE column1='asa';
-UPDATE table_name WHERE column1='asa';
-UPDATE SET column1 = 10 WHERE column1='asa';
-UPDATE SET = "value1", column2 = value2;
-UPDATE table_name SET column1 = 'value1', column2 = 3 WHERE column1= 6;
-UPDATE table_name SET column1 = 1, column2 = 3.92 WHERE column1= 3.7;
-UPDATE table_name SET column1 = "value1"  WHERE column1='asa';
-UpDATe table set `asdsad sadsa` = LOWER('as\'s23asd'), adsas = MIN(NUKasd) wherE (name = 112);
-UpDATe table set `asdsad sadsa` = LOWER('as\'s23asd'), adsas = MIN(NUKasd) wherE name > name BETWEEN 12 and 14;
+UpdATe table_name SeT column1 = 'value1' wHeRe column1='asa';
+update table
+set col1 = 'dsds'
+WHERE col2 = 'abc';
+update table_name set column1 = 'value1';
+UPDATE table_name SET column1 = "value1", column2 = 'value2' WHERE column1='asa';
+UPDATE table_name SET column1 = 1, column2 = 2.767, column3=true WHERE column1= 8 AND column4 = "asas";
+update table_name set column1 = DEFAULT;
+UPDATE table_name SET column1 = 6.7*2, column2 = 2+4;
+UPDATE table_name SET column1 = 5&2, column2 = 2^8;
+UPDATE table_name SET column1 = -1.76, column2 = +3 WHERE column3="val";
+UPDATE table_name SET column1 = "hello\" world", column2 = "ello\' world" WHERE column1='val';
+UPDATE table_name SET column1 = 4 wherE column2 BETWEEN 1200 AND 123;
+UPDATE table_name SET column1 = 8 wherE column2="val1" AND column3="val2"; 
+UPDATE table_name SET column1 = -1.76, column2 = +3 WHERE column3 < 10 OR column3 >= 100;
+UpDATe table_name SET column1 = LOWER('as\'s23asd'), column2 = MIN(column3) wherE column3 BETWEEN 12 and 14;
+UpDATe table 
+set `column 1` = LOWER('val'), `column 2` = MIN(column2)
+wherE column1 = "val";
+UPDATE table_name SET column1 = "val" WHERE column2<=>"val";
+UPDATE table_name SET column1 = "val" WHERE column2 IS NULL;
+UPDATE table_name SET column1 = "val" WHERE column2 IS NOT NULL;
 UpDATe table
-set `asdsad sadsa` = LOWER('as\'s23asd'), adsas = MIN(NUKasd)
-wherE (name="dsd" and name=MAX(default));
-UpDATe table
-set asdsad = LOWER('asdas23'), adsas = AVG(NUKasd)
-wherE ans = 'asdsad' OR asdsad BETWEEN 1200 AND 123;
-UpDATe table
-set asdsad = LOWER('asdas23')
+set column1 = LOWER('val1')
 WHERE (
-    (month = MIn(curdate))
+    (month = min(curdate))
     AND
     (employeeName = 'AJAY') 
 );
