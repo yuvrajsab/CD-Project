@@ -5,25 +5,26 @@ set col1 = 'dsds'
 WHERE col2 = 'abc';
 update table_name set column1 = 'value1';
 UPDATE table_name SET column1 = "value1", column2 = 'value2' WHERE column1='asa';
-UPDATE table_name SET column1 = 1, column2 = 2.767, column3=true WHERE column1= 8, column4 = "asas";
+UPDATE table_name SET column1 = 1, column2 = 2.767, column3=true WHERE column1= 8 AND column4 = "asas";
 update table_name set column1 = DEFAULT;
-UPDATE table_name SET column1 = column3*2, column2 = 2+4;
-UPDATE table_name SET column1 = column3&2, column2 = 2^8;
-UPDATE table_name SET column1 = -1.76, column2 = +3; WHERE column3="val";
-UPDATE table_name SET column1 = “hello\” world”, column1 = “hello\' world”  WHERE column1='val';
-UPDATE table_name SET column1 = 4 wherE table_name column2 BETWEEN 1200 AND 123;
-UPDATE table_name SET column1 = 4 wherE table_name column2="val1" AND column3="val2"; 
-UPDATE table_name SET column1 = -1.76, column2 = +3; WHERE column3 < 10 OR column3 >= 100;
+UPDATE table_name SET column1 = 6.7*2, column2 = 2+4;
+UPDATE table_name SET column1 = 5&2, column2 = 2^8;
+UPDATE table_name SET column1 = -1.76, column2 = +3 WHERE column3="val";
+UPDATE table_name SET column1 = "hello\" world", column2 = "ello\' world" WHERE column1='val';
+UPDATE table_name SET column1 = 4 wherE column2 BETWEEN 1200 AND 123;
+UPDATE table_name SET column1 = 8 wherE column2="val1" AND column3="val2"; 
+UPDATE table_name SET column1 = -1.76, column2 = +3 WHERE column3 < 10 OR column3 >= 100;
 UpDATe table_name SET column1 = LOWER('as\'s23asd'), column2 = MIN(column3) wherE column3 BETWEEN 12 and 14;
-UpDATe table set `column 1` = LOWER('ASHbdhd'), 'column 2' = MIN(NUKasd)
+UpDATe table 
+set `column 1` = LOWER('val'), `column 2` = MIN(column2)
 wherE column1 = "val";
 UPDATE table_name SET column1 = "val" WHERE column2<=>"val";
 UPDATE table_name SET column1 = "val" WHERE column2 IS NULL;
 UPDATE table_name SET column1 = "val" WHERE column2 IS NOT NULL;
 UpDATe table
-set asdsad = LOWER('asdas23')
+set column1 = LOWER('val1')
 WHERE (
-    (month = MIn(curdate))
+    (month = min(curdate))
     AND
     (employeeName = 'AJAY') 
 );
