@@ -1,11 +1,17 @@
 %{
     #include <stdio.h>
     #include <stdlib.h>
+    #include <string.h>
+    #include <stdbool.h> 
+
     int yylex();
     int yyerror();  
     int yyrestart();
     FILE* yyin;
-    void success();
+    void test();
+    int success();
+
+    bool isTestMode = false;
 %}
 
 %token UPDATE SET WHERE AND OR IS NOT ID LIKE BETWEEN END 
@@ -98,8 +104,11 @@ relop: '='
     ;
 %%
 
-void success() {
+int success() {
     printf("Query is Valid!\n");
+    if (!isTestMode)
+        exit(0);
+    return 0;
 }
 
 int yyerror(const char* msg) {
@@ -107,7 +116,7 @@ int yyerror(const char* msg) {
     return 2;
 }
 
-int main() {
+void test() {
     FILE *fin, *fout;
     char* line = NULL;
     size_t len = 0;
@@ -137,7 +146,18 @@ int main() {
     }
 
     fclose(fin);
+}
 
+int main(int argc, char* argv[]) {
+    if (argc > 1 && strcmp(argv[1], "TEST") == 0) {    
+        isTestMode = true;
+        test();
+        return 0;
+    }
+
+    printf("Enter a SQL update query:\n");
+    printf("SQL: ");
+    yyparse();
 
     return 0;
 }

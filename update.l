@@ -1,6 +1,9 @@
 %{
 	#include <stdio.h>
 	#include "y.tab.h"
+	#include <stdbool.h> 
+
+	extern bool isTestMode;
 %}
 
 id [A-Za-z_]+[A-Za-z0-9_]*
@@ -53,7 +56,10 @@ string_literal (['](\\\'|[^'])*['])|(["](\\\"|[^"])*["])
 "<>"                						return *yytext;
 "<=>"										return *yytext;
 ;											return END;
-\n				    						{ printf("  -> "); }
+\n				    						{ 
+												if (!isTestMode)
+													printf("  -> ");
+											};
 [ \t]+			    	                	/* ignore whitespace */;
 %%
 

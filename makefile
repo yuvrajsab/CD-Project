@@ -24,5 +24,8 @@ a.out: lex.yy.c y.tab.c y.tab.h
 
 build: clean a.out
 
+test: a.out
+	./a.out TEST
+
 run: a.out
 	./a.out
