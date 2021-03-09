@@ -9,3 +9,16 @@ UPDATE table_name SET column1 = 1, column2 = 3.92 WHERE column1= 3.7;
 UPDATE table_name SET column1 = "value1"  WHERE column1='asa';
 UpDATe table set `asdsad sadsa` = LOWER('as\'s23asd'), adsas = MIN(NUKasd) wherE (name = 112);
 UpDATe table set `asdsad sadsa` = LOWER('as\'s23asd'), adsas = MIN(NUKasd) wherE name > name BETWEEN 12 and 14;
+UpDATe table
+set `asdsad sadsa` = LOWER('as\'s23asd'), adsas = MIN(NUKasd)
+wherE (name="dsd" and name=MAX(default));
+UpDATe table
+set asdsad = LOWER('asdas23'), adsas = AVG(NUKasd)
+wherE ans = 'asdsad' OR asdsad BETWEEN 1200 AND 123;
+UpDATe table
+set asdsad = LOWER('asdas23')
+WHERE (
+    (month = MIn(curdate))
+    AND
+    (employeeName = 'AJAY') 
+);

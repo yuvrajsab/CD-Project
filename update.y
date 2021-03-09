@@ -12,6 +12,15 @@
 %token NULL_VAL STR_VAL NUM_VAL DEFAULT_VAL BOOL_VAL
 %token MAX_FUNC MIN_FUNC AVG_FUNC SUM_FUNC ABS_FUNC CEIL_FUNC FLOOR_FUNC UPPER_FUNC LOWER_FUNC
 
+// Not need for associativty
+%left '(' ')'
+%right '~' UMINUS UPLUS
+%left '*' '/' '%'
+%left '+' '-'
+%left '&'
+%left '^'
+%left '|'
+
 %%
 start: UPDATE ID SET columns clause END       { success(); }
     ;
@@ -21,22 +30,27 @@ columns: ID '=' col_val ',' columns
 col_val: value
     | DEFAULT_VAL
     ;
-value: NULL_VAL
-    | STR_VAL
-    | BOOL_VAL
-    | NUM_VAL
-    | '-' NUM_VAL
-    | '~' NUM_VAL
-    | MAX_FUNC '(' func_value ')'
-    | MIN_FUNC '(' func_value ')'
-    | AVG_FUNC '(' func_value ')'
-    | SUM_FUNC '(' func_value ')'
-    | ABS_FUNC '(' func_value ')'
-    | CEIL_FUNC '(' func_value ')'
-    | FLOOR_FUNC '(' func_value ')'
-    | UPPER_FUNC '(' func_value ')'
-    | LOWER_FUNC '(' func_value ')'
-    | value airth_op value
+value: NULL_VAL next_val
+    | STR_VAL next_val
+    | BOOL_VAL next_val
+    | pre_num NUM_VAL next_val
+    | MAX_FUNC '(' func_value ')' next_val
+    | MIN_FUNC '(' func_value ')' next_val
+    | AVG_FUNC '(' func_value ')' next_val
+    | SUM_FUNC '(' func_value ')' next_val
+    | ABS_FUNC '(' func_value ')' next_val
+    | CEIL_FUNC '(' func_value ')' next_val
+    | FLOOR_FUNC '(' func_value ')' next_val
+    | UPPER_FUNC '(' func_value ')' next_val
+    | LOWER_FUNC '(' func_value ')' next_val
+    ;
+pre_num: '+' %prec UPLUS pre_num
+    | '-' %prec UMINUS pre_num
+    | '~' pre_num
+    |
+    ;
+next_val: airth_op value
+    |
     ;
 func_value: value
     | ID
@@ -49,12 +63,11 @@ airth_op: '+'
     | '&'
     | '|'
     | '^'
-    | '~'
     ;
 clause: WHERE where_stmt
     |
     ;
-where_stmt: '(' where_stmt ')'
+where_stmt:
     | condition
     | condition AND condition
     | condition OR condition
@@ -65,7 +78,7 @@ where_stmt: '(' where_stmt ')'
     | ID LIKE STR_VAL
     | ID NOT LIKE STR_VAL
     ;
-condition: '(' condition ')'
+condition: '(' where_stmt ')'
     | ID relop value
     | ID IS is_val
     | ID IS NOT is_val
@@ -109,7 +122,7 @@ int main() {
     printf("\nRunning all tests...\n\n");
 
     int test_num = 1;
-    while ((read = getdelim(&line, &len, DELIM_ASCII, fin)) != -1) {
+    while ((read = getdelim(&line, &len, DELIM_ASCII, fin)) != -1 && read > 1) {
         printf("\n\nTest: %d\n\n", test_num++);
         printf("%s\n", line);
 
