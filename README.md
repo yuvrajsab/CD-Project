@@ -67,3 +67,20 @@ Or Manually (after Build):
 ./a.out #(for linux/macos)
 ./a.exe #(for windows)
 ```
+
+### Test
+
+We have some tests in `tests.txt` file to check the parser which strings it is accepting. You can also add your own string in `tests.txt` file.
+
+Run test using GnuMake:
+
+```bash
+make test
+```
+
+Or Manually (after Build):
+
+```bash
+./a.out TEST #(for linux/macos)
+./a.exe TEST #(for windows)
+```
