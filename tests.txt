@@ -1,0 +1,11 @@
+UPDATE table_name SET column1 = 'value1' WHERE column1='asa';
+UpdAtE table_name SeT column1 = 'value1' WhEre column1='asa';
+UPDATE table_name SET = "value1", column2 = value2 WHERE column1='asa';
+UPDATE table_name WHERE column1='asa';
+UPDATE SET column1 = 10 WHERE column1='asa';
+UPDATE SET = "value1", column2 = value2;
+UPDATE table_name SET column1 = 'value1', column2 = 3 WHERE column1= 6;
+UPDATE table_name SET column1 = 1, column2 = 3.92 WHERE column1= 3.7;
+UPDATE table_name SET column1 = "value1"  WHERE column1='asa';
+UpDATe table set `asdsad sadsa` = LOWER('as\'s23asd'), adsas = MIN(NUKasd) wherE (name = 112);
+UpDATe table set `asdsad sadsa` = LOWER('as\'s23asd'), adsas = MIN(NUKasd) wherE name > name BETWEEN 12 and 14;
