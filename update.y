@@ -3,6 +3,7 @@
     #include <stdlib.h>
     int yylex();
     int yyerror();  
+    int yyrestart();
     FILE* yyin;
     void success();
 %}
@@ -99,7 +100,6 @@ relop: '='
 
 void success() {
     printf("Query is Valid!\n");
-    exit(0);
 }
 
 int yyerror(const char* msg) {
@@ -108,11 +108,36 @@ int yyerror(const char* msg) {
 }
 
 int main() {
-    printf("Enter a SQL update query:\n");
-    printf("SQL: ");
-    yyin = fopen("file.txt", "r");
+    FILE *fin, *fout;
+    char* line = NULL;
+    size_t len = 0;
+    ssize_t read;
+    int DELIM_ASCII = 59;       // ascii value of ';'
+
+    fin = fopen("tests.txt", "r");
     
-    yyparse();
-    
+    if (fin == NULL)
+        exit(0);
+
+    printf("\nRunning all tests...\n\n");
+
+    int test_num = 1;
+    while ((read = getdelim(&line, &len, DELIM_ASCII, fin)) != -1 && read > 1) {
+        printf("\n\nTest: %d\n\n", test_num++);
+        printf("%s\n", line);
+
+        // writing current read query into another file
+        fout = fopen("query.txt", "w");
+        fwrite (line , sizeof(char), read, fout);
+        fclose(fout);
+
+        yyin = fopen("query.txt", "r");
+        yyparse();
+        yyrestart();
+    }
+
+    fclose(fin);
+
+
     return 0;
 }
