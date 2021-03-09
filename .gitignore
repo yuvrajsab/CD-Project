@@ -3,3 +3,4 @@ a.exe
 lex.yy.c
 y.*
 *.txt
+!tests.txt
