@@ -18,15 +18,6 @@
 %token NULL_VAL STR_VAL NUM_VAL DEFAULT_VAL BOOL_VAL
 %token MAX_FUNC MIN_FUNC AVG_FUNC SUM_FUNC ABS_FUNC CEIL_FUNC FLOOR_FUNC UPPER_FUNC LOWER_FUNC
 
-// Not need for associativty
-%left '(' ')'
-%right '~' UMINUS UPLUS
-%left '*' '/' '%'
-%left '+' '-'
-%left '&'
-%left '^'
-%left '|'
-
 %%
 start: UPDATE ID SET columns clause END       { success(); }
     ;
@@ -50,8 +41,8 @@ value: NULL_VAL next_val
     | UPPER_FUNC '(' func_value ')' next_val
     | LOWER_FUNC '(' func_value ')' next_val
     ;
-pre_num: '+' %prec UPLUS pre_num
-    | '-' %prec UMINUS pre_num
+pre_num: '+' pre_num
+    | '-' pre_num
     | '~' pre_num
     |
     ;
