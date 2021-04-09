@@ -14,6 +14,10 @@ SQL: update table
 Query is Valid!
 ```
 
+## Screenshot
+
+![screenshot](https://github.com/yuvrajsab/CD-Project/blob/master/image.PNG)
+
 ## Development
 
 This project is built using Flex, Yacc and [GNUMake](https://www.gnu.org/software/make/).
